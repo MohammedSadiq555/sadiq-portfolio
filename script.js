@@ -1,15 +1,17 @@
 // Change text functionality
-const text = document.querySelector(".constant_1");
-let currentIndex = 0;
-const texts = ["SOFTWARE DEVELOPER", "UI DESIGNER", "WEB DEVELOPER"];
-text.textContent = texts[currentIndex];
-const textLoad = () => {
-    setInterval(() => {
+document.addEventListener('DOMContentLoaded', () => {
+    const text = document.querySelector(".constant_1");
+    let currentIndex = 0;
+    const texts = ["SOFTWARE DEVELOPER", "UI DESIGNER", "WEB DEVELOPER"];
+    if (text) { // Check if the element exists
         text.textContent = texts[currentIndex];
-        currentIndex = (currentIndex + 1) % texts.length;
-    }, 4000); // Change text every 4 seconds
-};
-textLoad();
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % texts.length;
+            text.textContent = texts[currentIndex];
+        }, 4000);
+    }
+});
+
 
 // Original secret key check (if still needed elsewhere)
 // This function was redirecting to another page; if you want to remove it in favor of the inline admin panel, you can comment it out.
