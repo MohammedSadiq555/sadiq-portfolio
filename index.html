@@ -62,40 +62,44 @@
       width: 100%;
       position: relative;
     }
-    .diamond {
-      height: 200px;
-      width: 200px;
-      border-radius: 30px;
-      background-color: rgb(26, 29, 209);
-      transform: rotate(45deg);
-      box-shadow: -5px -5px 10px white;
-      position: absolute;
-    }
-    /* Adjust diamond positions for centering */
-    .diamond:first-child {
-      z-index: 4;
-      top: 290px;
-      left: calc(50% - 100px); /* Centered horizontally */
-    }
-    .diamond:nth-child(2) {
-      z-index: 3;
-      background-color: #b1b1b1;
-      top: 150px;
-      left: calc(50% - 250px);
-    }
-    .diamond:nth-child(3) {
-      z-index: 1;
-      top: 50px;
-      left: calc(50% + 50px);
-    }
-    .sad {
-      height: 350px;
-      position: absolute;
-      top: 20px;
-      left: calc(50% - 175px); /* center image (assuming image width ~350px) */
-      z-index: 2;
-      filter: brightness(1.7);
-    }
+.diamond{
+            height: 200px;
+            width: 200px;
+            border-radius: 30px;
+            background-color: rgb(26, 29, 209);
+            transform: rotate(45deg);
+            box-shadow: -5px -5px 10px white;
+        }
+
+        .sad{
+            height: 350px;
+            position: relative;
+            top: -580px;
+            left: 310px;
+            z-index: 2;
+            filter: brightness(1.7);
+        }
+
+        .diamond:first-child{
+            z-index: 4;
+            position: relative;
+            top: 290px;
+            left: 300px;
+        }
+
+        .diamond:nth-child(2){
+            z-index: 3;
+            background-color: #b1b1b1;
+            position: relative;
+            left: 170px;
+        }
+
+        .diamond:nth-child(3){
+            z-index: 1;
+            position: relative;
+            top: -300px;
+            left: 220px;
+        }
     .transformer {
       position: absolute;
       width: fit-content;
