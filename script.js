@@ -2,6 +2,27 @@ const SUPABASE_URL = 'https://nywdhxarhxmyfwjrjbrf.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im55d2RoeGFyaHhteWZ3anJqYnJmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAyMzcxNzEsImV4cCI6MjA1NTgxMzE3MX0.7UT3t6KOxeP5wdHzbKTj6sIU3LXU5Cz4106gN5gAXz0';
 const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+const adminKey = "your_secret_key"; // Set your secret key
+
+function checkAdminKey(event) {
+    if (event.key === "Enter") { // Check if Enter key is pressed
+        const inputKey = document.getElementById("adminKeyInput").value;
+        if (inputKey === adminKey) {
+            document.getElementById("adminPanel").style.display = "block";
+            document.getElementById("adminKeyInput").style.display = "none"; // Hide input field
+        } else {
+            alert("Incorrect key. Try again.");
+        }
+    }
+}
+
+// Function to close admin panel
+function closeAdminPanel() {
+    document.getElementById("adminPanel").style.display = "none";
+    document.getElementById("adminKeyInput").style.display = "block"; // Show input field again
+}
+
+
 document.getElementById('uploadForm').addEventListener('submit', async function(event) {
   event.preventDefault();
   
