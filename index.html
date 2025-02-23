@@ -42,6 +42,7 @@
         <select id="uploadType">
           <option value="project">Project</option>
           <option value="certificate">Certificate</option>
+          <option value="uidesign">UI Design</option>
         </select>
 
         <label for="imageName">Image Name:</label>
@@ -59,7 +60,7 @@
     </div>
 
     <!-- Projects Section -->
-    <div class="projects-section" id="projects-made">
+    <div class="projects-section" id="projectsSection">
       <h2>Projects</h2>
       <button class="nav-button prev" onclick="scrollProjects('projectsContainer', -1)">&#9664;</button>
       <div class="projects-container" id="projectsContainer">
@@ -75,101 +76,53 @@
           <p>Type: Web Project</p>
           <p>Date: Feb 2024</p>
         </div>
-        <div class="project">
-          <div class="image-placeholder" style="background-color: green;"></div>
-          <h3>Project Three</h3>
-          <p>Type: Web Project</p>
-          <p>Date: Mar 2024</p>
-        </div>
-        <div class="project">
-          <div class="image-placeholder" style="background-color: purple;"></div>
-          <h3>Project Four</h3>
-          <p>Type: Web Project</p>
-          <p>Date: Apr 2024</p>
-        </div>
-        <div class="project">
-          <div class="image-placeholder" style="background-color: red;"></div>
-          <h3>Project One</h3>
-          <p>Type: Web Project</p>
-          <p>Date: Jan 2024</p>
-        </div>
-        <div class="project">
-          <div class="image-placeholder" style="background-color: blue;"></div>
-          <h3>Project Two</h3>
-          <p>Type: Web Project</p>
-          <p>Date: Feb 2024</p>
-        </div>
-        <div class="project">
-          <div class="image-placeholder" style="background-color: green;"></div>
-          <h3>Project Three</h3>
-          <p>Type: Web Project</p>
-          <p>Date: Mar 2024</p>
-        </div>
-        <div class="project">
-          <div class="image-placeholder" style="background-color: purple;"></div>
-          <h3>Project Four</h3>
-          <p>Type: Web Project</p>
-          <p>Date: Apr 2024</p>
-        </div>
+        <!-- Additional project cards as needed -->
       </div>
       <button class="nav-button next" onclick="scrollProjects('projectsContainer', 1)">&#9654;</button>
     </div>
 
     <!-- Courses Section -->
-    <div class="projects-section" id="courses-made">
+    <div class="projects-section" id="coursesSection">
       <h2>Courses</h2>
       <button class="nav-button prev" onclick="scrollProjects('coursesContainer', -1)">&#9664;</button>
       <div class="projects-container" id="coursesContainer">
         <div class="project">
-          <div class="image-placeholder" style="background-color: red;"></div>
+          <div class="image-placeholder" style="background-color: green;"></div>
           <h3>Course One</h3>
           <p>Type: Web Project</p>
           <p>Date: Jan 2024</p>
         </div>
         <div class="project">
-          <div class="image-placeholder" style="background-color: blue;"></div>
+          <div class="image-placeholder" style="background-color: purple;"></div>
           <h3>Course Two</h3>
           <p>Type: Web Project</p>
           <p>Date: Feb 2024</p>
         </div>
-        <div class="project">
-          <div class="image-placeholder" style="background-color: green;"></div>
-          <h3>Course Three</h3>
-          <p>Type: Web Project</p>
-          <p>Date: Mar 2024</p>
-        </div>
-        <div class="project">
-          <div class="image-placeholder" style="background-color: purple;"></div>
-          <h3>Course Four</h3>
-          <p>Type: Web Project</p>
-          <p>Date: Apr 2024</p>
-        </div>
-        <div class="project">
-          <div class="image-placeholder" style="background-color: red;"></div>
-          <h3>Course One</h3>
-          <p>Type: Web Project</p>
-          <p>Date: Jan 2024</p>
-        </div>
-        <div class="project">
-          <div class="image-placeholder" style="background-color: blue;"></div>
-          <h3>Course Two</h3>
-          <p>Type: Web Project</p>
-          <p>Date: Feb 2024</p>
-        </div>
-        <div class="project">
-          <div class="image-placeholder" style="background-color: green;"></div>
-          <h3>Course Three</h3>
-          <p>Type: Web Project</p>
-          <p>Date: Mar 2024</p>
-        </div>
-        <div class="project">
-          <div class="image-placeholder" style="background-color: purple;"></div>
-          <h3>Course Four</h3>
-          <p>Type: Web Project</p>
-          <p>Date: Apr 2024</p>
-        </div>
+        <!-- Additional course cards as needed -->
       </div>
       <button class="nav-button next" onclick="scrollProjects('coursesContainer', 1)">&#9654;</button>
+    </div>
+
+    <!-- UI Designs Section -->
+    <div class="projects-section" id="uidesignsSection">
+      <h2>UI Designs</h2>
+      <button class="nav-button prev" onclick="scrollProjects('uidesignsContainer', -1)">&#9664;</button>
+      <div class="projects-container" id="uidesignsContainer">
+        <div class="project">
+          <div class="image-placeholder" style="background-color: orange;"></div>
+          <h3>UI Design One</h3>
+          <p>Type: UI Design</p>
+          <p>Date: Jan 2024</p>
+        </div>
+        <div class="project">
+          <div class="image-placeholder" style="background-color: teal;"></div>
+          <h3>UI Design Two</h3>
+          <p>Type: UI Design</p>
+          <p>Date: Feb 2024</p>
+        </div>
+        <!-- Additional UI design cards as needed -->
+      </div>
+      <button class="nav-button next" onclick="scrollProjects('uidesignsContainer', 1)">&#9654;</button>
     </div>
   </div>
 
@@ -186,7 +139,6 @@
     .course-list{
       display: flex;
     }
-
     .nptel{
       width: 30%;
       height: auto;
@@ -196,28 +148,23 @@
       justify-content: center;
       flex-wrap: wrap;
     }
-
     .nptel img{
       width: 80%;
     }
-
     .nptel iframe {
       width: 80%;
-      height: auto; /* Adjust the height as needed */
+      height: auto;
     }
-
     .courses > .title > h1{
       color: rgb(26, 29, 209);
       text-align: center;
       font-size: 50px;
     }
-
     .title{
       height: auto;
       width: 90%;
       position: relative;
     }
-
     .courses{
       padding-left: 50px;
       padding-right: 50px;
@@ -228,7 +175,6 @@
       height: auto;
       justify-items: center;
     }
-
     .transformer{
       position: absolute;
       width: fit-content;
@@ -236,7 +182,6 @@
       bottom: 220px;
       overflow: hidden;
     }
-
     .para{
       width: 1000px;
       margin-top: 15px;
@@ -245,36 +190,30 @@
       background-color: rgb(236, 238, 255);
       border-radius: 20px;
     }
-
     .mid_2{
       margin-top: 150px;
       justify-content: center;
       display: flex;
       flex-wrap: wrap;
     }
-
     .para > img{
       height: 300px;
       margin-left: 10px;
       margin-right: 10px;
       mix-blend-mode: multiply;
     }
-
     .para > p{
       width: 700px;
       margin-left: 30px;
       margin-top: 30px;
       padding: 30px;
     }
-
     .text{
       color: rgb(46, 2, 116);
     }
-
     .constant_1{
       color: rgb(26, 29, 209);
     }
-
     .constant_1:before{
       content: "";
       position: absolute;
@@ -286,19 +225,16 @@
       border-left: 2px solid rgb(0, 0, 73);
       animation: animate 4s steps(11) infinite;
     }
-
     .constant {
       display: inline;
       position: relative;
       bottom: 13px;
     }
-
     .constant_1 {
       position: relative;
       display: inline-block;
       overflow: hidden;
     }
-
     @keyframes animate{
       40%, 60%{
         left: 100%;
@@ -307,18 +243,15 @@
         left: 0%;
       }
     }
-
     span{
       color: black;
       font-size: 50px;
     }
-
     .mid_1{
       margin-top: 50px;
       height: 400px;
       width: auto;
     }
-
     .diamond{
       height: 200px;
       width: 200px;
@@ -327,7 +260,6 @@
       transform: rotate(45deg);
       box-shadow: -5px -5px 10px white;
     }
-
     .sad{
       height: 350px;
       position: relative;
@@ -336,54 +268,46 @@
       z-index: 2;
       filter: brightness(1.7);
     }
-
     .diamond:first-child{
       z-index: 4;
       position: relative;
       top: 290px;
       left: 300px;
     }
-
     .diamond:nth-child(2){
       z-index: 3;
       background-color: #b1b1b1;
       position: relative;
       left: 170px;
     }
-
     .diamond:nth-child(3){
       z-index: 1;
       position: relative;
       top: -300px;
       left: 220px;
     }
-
     *{
       font-family: "Quicksand", sans-serif;
       font-optical-sizing: auto;
       font-style: normal;
       box-sizing: border-box;
     }
-
     .header{
       background-color: rgb(26, 29, 209);
       height: 150px;
       width:100%;
       border-bottom: 5px solid rgb(46, 2, 116);
     }
-
     a{
       margin-right: 40px;
       text-decoration: none;
       color: white;
     }
-
     nav{
       position: absolute;
       right: 10px;
       top: 70px;
     }
-
     .myself{
       font-size: 38px;
       position: absolute;
@@ -391,7 +315,6 @@
       left: 30px;
       color: white;
     }
-
     .projects-section {
       top: 100px;
       padding: 20px;
