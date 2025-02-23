@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  
   // --- Close Admin Panel Functionality ---
   window.closeAdminPanel = function() {
     document.getElementById("adminPanel").style.display = "none";
@@ -36,4 +37,21 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // --- (Other functionalities such as Supabase, scrolling, etc. go here) ---
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Define the scrollProjects function and attach it to the window object.
+  window.scrollProjects = function(containerId, direction) {
+    const container = document.getElementById(containerId);
+    if (!container) {
+      console.error("Container not found: " + containerId);
+      return;
+    }
+    // Set a scroll amount; adjust this value if needed.
+    const scrollAmount = 270;
+    container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+  };
+
+  // ... other code (rotating text, admin panel, etc.) ...
 });
