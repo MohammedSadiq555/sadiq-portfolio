@@ -34,6 +34,28 @@
                 <span class="constant_3 text">DEVELOPER </span> -->
             </div>
         </div>
+        <div id="adminPanel" style="display: none;">
+        <h2>Admin Panel</h2>
+        <form id="uploadForm">
+            <label for="uploadType">Type:</label>
+            <select id="uploadType">
+                <option value="project">Project</option>
+                <option value="certificate">Certificate</option>
+            </select>
+
+            <label for="imageName">Image Name:</label>
+            <input type="text" id="imageName" required>
+
+            <label for="imageTitle">Image Title:</label>
+            <input type="text" id="imageTitle" required>
+
+            <label for="imageInput">Upload Image:</label>
+            <input type="file" id="imageInput" accept="image/*" required>
+
+            <button type="submit">Upload</button>
+        </form>
+        <button onclick="closeAdminPanel()">Close</button>
+    </div>
 
         <div class="projects-section">
             <h2>Projects</h2>
