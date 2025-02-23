@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Replace 'your-bucket-name' with your actual bucket name in Supabase
       const { data: storageData, error: storageError } = await supabaseClient
         .storage
-        .from('your-bucket-name')
+        .from('image-uploads')
         .upload(filePath, file);
 
       if (storageError) {
