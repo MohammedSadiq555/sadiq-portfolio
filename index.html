@@ -25,87 +25,81 @@
       margin: 0 auto;
     }
     /* Header & Navigation */
-.header{
-            background-color: rgb(26, 29, 209);
-            height: 150px;
-            width:100%;
-            border-bottom: 5px solid rgb(46, 2, 116);
-        }
-
-        a{
-            margin-right: 40px;
-            text-decoration: none;
-            color: white;
-        }
-
-        nav{
-            position: absolute;
-            right: 10px;
-            top: 70px;
-        }
-
-        .myself{
-            font-size: 38px;
-            position: absolute;
-            top: 20px;
-            left: 30px;
-            color: white;
-        }
+    .header {
+      background-color: rgb(26, 29, 209);
+      height: 150px;
+      width: 100vw; /* Cover full viewport width */
+      border-bottom: 5px solid rgb(46, 2, 116);
+      position: relative;
+      margin: 0;
+      padding: 0;
+    }
+    .myself {
+      font-size: 38px;
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      color: white;
+    }
+    nav {
+      position: absolute;
+      right: 10px;
+      top: 70px;
+    }
+    nav a {
+      margin-right: 40px;
+      text-decoration: none;
+      color: white;
+    }
     /* Mid Section (Restored Original Styles) */
-      span{
-            color: black;
-            font-size: 50px;
-        }
-
-        .mid_1{
-            margin-top: 50px;
-            height: 400px;
-            width: auto;
-        }
-
-        .diamond{
-            height: 200px;
-            width: 200px;
-            border-radius: 30px;
-            background-color: rgb(26, 29, 209);
-            transform: rotate(45deg);
-            box-shadow: -5px -5px 10px white;
-        }
-
-        .sad{
-            height: 350px;
-            position: relative;
-            top: -580px;
-            left: 310px;
-            z-index: 2;
-            filter: brightness(1.7);
-        }
-
-        .diamond:first-child{
-            z-index: 4;
-            position: relative;
-            top: 290px;
-            left: 300px;
-        }
-
-        .diamond:nth-child(2){
-            z-index: 3;
-            background-color: #b1b1b1;
-            position: relative;
-            left: 170px;
-        }
-
-        .diamond:nth-child(3){
-            z-index: 1;
-            position: relative;
-            top: -300px;
-            left: 220px;
-        }
+    span {
+      color: black;
+      font-size: 50px;
+    }
+    .mid_1 {
+      margin-top: 50px;
+      height: 400px;
+      width: auto;
+    }
+    .diamond {
+      height: 200px;
+      width: 200px;
+      border-radius: 30px;
+      background-color: rgb(26, 29, 209);
+      transform: rotate(45deg);
+      box-shadow: -5px -5px 10px white;
+    }
+    .sad {
+      height: 350px;
+      position: relative;
+      top: -580px;
+      left: 310px;
+      z-index: 2;
+      filter: brightness(1.7);
+    }
+    .diamond:first-child {
+      z-index: 4;
+      position: relative;
+      top: 290px;
+      left: 300px;
+    }
+    .diamond:nth-child(2) {
+      z-index: 3;
+      background-color: #b1b1b1;
+      position: relative;
+      left: 170px;
+    }
+    .diamond:nth-child(3) {
+      z-index: 1;
+      position: relative;
+      top: -300px;
+      left: 220px;
+    }
     .transformer {
       position: absolute;
       width: fit-content;
       left: 550px;
-      bottom: 220px;
+      bottom: 180px; /* lowered from 220px */
       overflow: hidden;
     }
     .constant_1 {
@@ -132,10 +126,6 @@
       100% {
         left: 0%;
       }
-    }
-/*    span {
-      color: black;
-      font-size: 50px;
     }
     /* Admin Panel Styles (Enhanced) */
     #adminPanel {
