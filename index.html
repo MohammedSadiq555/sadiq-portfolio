@@ -49,10 +49,11 @@
       text-decoration: none;
       color: white;
     }
-    /* Mid Section */
+    /* Mid Section (Restored Original Styles) */
     .mid_1 {
       margin-top: 50px;
       height: 400px;
+      width: auto;
       position: relative;
     }
     .diamond {
@@ -62,22 +63,22 @@
       background-color: rgb(26, 29, 209);
       transform: rotate(45deg);
       box-shadow: -5px -5px 10px white;
-      position: absolute;
+      position: relative;
     }
     .diamond:first-child {
+      z-index: 4;
       top: 290px;
       left: 300px;
-      z-index: 4;
     }
     .diamond:nth-child(2) {
-      left: 170px;
       z-index: 3;
       background-color: #b1b1b1;
+      left: 170px;
     }
     .diamond:nth-child(3) {
+      z-index: 1;
       top: -300px;
       left: 220px;
-      z-index: 1;
     }
     .sad {
       height: 350px;
@@ -89,10 +90,10 @@
     }
     .transformer {
       position: absolute;
+      width: fit-content;
       left: 550px;
       bottom: 220px;
       overflow: hidden;
-      width: fit-content;
     }
     .constant_1 {
       color: rgb(26, 29, 209);
@@ -107,7 +108,7 @@
       left: 0;
       height: 100%;
       width: 100%;
-      background-color: #fff;
+      background-color: rgb(255, 255, 255);
       border-left: 2px solid rgb(0, 0, 73);
       animation: animate 4s steps(11) infinite;
     }
@@ -120,10 +121,10 @@
       }
     }
     span {
-      font-size: 50px;
       color: black;
+      font-size: 50px;
     }
-    /* Admin Panel Styles */
+    /* Admin Panel Styles (Enhanced) */
     #adminPanel {
       position: fixed;
       top: 50%;
@@ -171,7 +172,7 @@
     #adminPanel button:hover {
       background-color: rgb(46, 2, 116);
     }
-    /* Projects, Courses, UI Designs Sections */
+    /* Sections: Projects, Courses, UI Designs */
     .projects-section {
       padding: 20px;
       text-align: center;
@@ -286,16 +287,12 @@
           <option value="certificate">Certificate</option>
           <option value="uidesign">UI Design</option>
         </select>
-
         <label for="imageName">Image Name:</label>
         <input type="text" id="imageName" required>
-
         <label for="imageTitle">Image Title:</label>
         <input type="text" id="imageTitle" required>
-
         <label for="imageInput">Upload Image:</label>
         <input type="file" id="imageInput" accept="image/*" required>
-
         <button type="submit">Upload</button>
       </form>
       <button onclick="closeAdminPanel()">Close</button>
