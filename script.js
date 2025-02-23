@@ -13,26 +13,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Secret Key / Admin Panel Functionality ---
   const adminKey = "mysecret";  // Set your secret key here
-
-  const adminKeyInput = document.getElementById("adminKeyInput");
-  if (adminKeyInput) {
-    adminKeyInput.addEventListener("keyup", function(event) {
-      if (event.key === "Enter") {
-        const inputKey = adminKeyInput.value;
-        if (inputKey === adminKey) {
-          document.getElementById("adminPanel").style.display = "block";
-          adminKeyInput.style.display = "none"; // Hide key input field
-        } else {
-          alert("Incorrect key. Try again.");
-        }
-      }
-    });
-  }
-
-  // Function to close admin panel and show key input again.
-  window.closeAdminPanel = function() {
-    document.getElementById("adminPanel").style.display = "none";
-    adminKeyInput.style.display = "block";
+  const secretKeyInput = document.getElementById("secretKey");
+  window.checkSecret = function() {
+    const inputKey = secretKeyInput.value;
+    if (inputKey === adminKey) {
+      document.getElementById("adminPanel").style.display = "block";
+      secretKeyInput.style.display = "none";
+    } else {
+      alert("Incorrect key. Try again.");
+    }
   };
 
   // --- Scroll Projects Functionality ---
@@ -56,6 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const uploadType = document.getElementById('uploadType').value;
       const imageInput = document.getElementById('imageInput');
       const imageName = document.getElementById('imageName').value;
+      // imageTitle is collected from the form but not inserted into the table,
+      // because your table doesn't currently have a matching column.
       const imageTitle = document.getElementById('imageTitle').value;
 
       if (!imageInput.files || !imageInput.files[0]) {
@@ -71,12 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
       // Replace 'your-bucket-name' with your actual bucket name in Supabase
       const { data: storageData, error: storageError } = await supabaseClient
         .storage
-        .from('image-uploads')
+        .from('your-bucket-name')
         .upload(filePath, file);
 
       if (storageError) {
-        console.error('Upload error:', storageError.message);
-        alert('Failed to upload image.');
+        console.error('Upload error details:', storageError);
+        alert('Failed to upload image: ' + storageError.message);
         return;
       }
 
@@ -87,8 +78,24 @@ document.addEventListener('DOMContentLoaded', () => {
         .getPublicUrl(filePath);
 
       if (publicUrlError) {
-        console.error('Public URL error:', publicUrlError.message);
-        alert('Failed to get image URL.');
+        console.error('Public URL error:', publicUrlError);
+        alert('Failed to get image URL: ' + publicUrlError.message);
+        return;
+      }
+
+      // Insert image metadata into the Supabase table.
+      // Replace 'uploads' with your table name if it's different.
+      const { data: dbData, error: dbError } = await supabaseClient
+        .from('uploads')
+        .insert([{
+          type: uploadType,      // Matches the "type" column (ensure this is spelled correctly in your table)
+          name: imageName,       // Matches the "name" column
+          imageurl: publicURL    // Matches the "imageurl" column
+        }]);
+
+      if (dbError) {
+        console.error('Database insert error:', dbError);
+        alert('Failed to save image metadata: ' + dbError.message);
         return;
       }
 
@@ -117,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
       uploadForm.reset();
       document.getElementById('adminPanel').style.display = 'none';
       // Optionally, if you want to show the key input again:
-      adminKeyInput.style.display = 'block';
+      secretKeyInput.style.display = 'block';
     });
   }
 });
