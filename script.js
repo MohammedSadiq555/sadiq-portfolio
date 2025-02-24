@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Rotating Text Functionality ---
   const text = document.querySelector(".constant_1");
   let currentIndex = 0;
-  const texts = ["  SOFTWARE ENGINEER", "  UI DESIGNER", "  WEB DEVELOPER"];
+  const texts = ["SOFTWARE ENGINEER", "UI DESIGNER", "WEB DEVELOPER"];
   if (text) {
     text.textContent = texts[currentIndex];
     setInterval(() => {
