@@ -14,12 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Secret Key / Admin Panel Functionality ---
   const adminKey = "mysecret";  // Change this to your secret key
   const adminKeyInput = document.getElementById("adminKeyInput");
-  // When the user presses Enter, check the key
   if (adminKeyInput) {
     adminKeyInput.addEventListener("keyup", (event) => {
       if (event.key === "Enter") {
         if (adminKeyInput.value === adminKey) {
-          // Show overlay if desired (optional)
           const overlay = document.getElementById("overlay");
           if (overlay) overlay.style.display = "block";
           document.getElementById("adminPanel").style.display = "block";
@@ -30,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-  // Function to close admin panel and show the key input again
   window.closeAdminPanel = function() {
     document.getElementById("adminPanel").style.display = "none";
     const overlay = document.getElementById("overlay");
@@ -60,8 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
     uploadForm.addEventListener('submit', async (event) => {
       event.preventDefault();
 
-      // Retrieve form values
-      const category = document.getElementById('uploadType').value;
+      // Retrieve form values using the updated IDs.
+      const category = document.getElementById('uploadCategory').value;
       const imageInput = document.getElementById('imageInput');
       const imageName = document.getElementById('imageName').value;
       const imageDescription = document.getElementById('imageDescription').value;
@@ -77,12 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const fileName = `${Date.now()}.${fileExt}`;
       const filePath = `${category}/${fileName}`;
 
-      // Upload image to Supabase Storage
+      // Upload image to Supabase Storage.
       const { data: storageData, error: storageError } = await supabaseClient
         .storage
         .from('your-bucket-name')  // Update with your bucket name
         .upload(filePath, file);
-
       if (storageError) {
         console.error('Upload error:', storageError);
         alert('Failed to upload image: ' + storageError.message);
@@ -93,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .storage
         .from('your-bucket-name')
         .getPublicUrl(filePath);
-
       if (publicUrlError) {
         console.error('Public URL error:', publicUrlError);
         alert('Failed to get image URL: ' + publicUrlError.message);
@@ -101,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Insert image metadata into the database table.
-      // Ensure your table has columns matching these keys: category, name, description, date, imageurl
       const { data: dbData, error: dbError } = await supabaseClient
         .from('uploads')
         .insert([{
@@ -111,14 +105,13 @@ document.addEventListener('DOMContentLoaded', () => {
           date: imageDate,
           imageurl: publicURL
         }]);
-
       if (dbError) {
         console.error('Database insert error:', dbError);
         alert('Failed to save image metadata: ' + dbError.message);
         return;
       }
 
-      // Create a new card element to display the uploaded data
+      // Create a new card element to display the new upload.
       const card = document.createElement('div');
       card.classList.add('project');
 
@@ -141,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
       card.appendChild(descEl);
       card.appendChild(dateEl);
 
-      // Append the new card to the corresponding container based on category.
+      // Append the card to the corresponding container based on category.
       let containerId = '';
       if (category === 'project') {
         containerId = 'projectsContainer';
