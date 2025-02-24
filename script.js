@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // --- Rotating Text Functionality ---
-  const text = document.querySelector(".constant_1");
+  // --- Rotating Text Functionality for Dynamic Occupations ---
+  const dynamicText = document.querySelector(".constant_1");
   let currentIndex = 0;
   const texts = ["SOFTWARE ENGINEER", "UI DESIGNER", "WEB DEVELOPER"];
-  if (text) {
-    text.textContent = texts[currentIndex];
+  if (dynamicText) {
+    dynamicText.textContent = texts[currentIndex];
     setInterval(() => {
       currentIndex = (currentIndex + 1) % texts.length;
-      text.textContent = texts[currentIndex];
+      dynamicText.textContent = texts[currentIndex];
     }, 4000);
   }
 
@@ -19,24 +19,24 @@ document.addEventListener('DOMContentLoaded', () => {
     adminKeyInput.addEventListener("keyup", (event) => {
       if (event.key === "Enter") {
         if (adminKeyInput.value === adminKey) {
-  document.getElementById("overlay").style.display = "block";
-  document.getElementById("adminPanel").style.display = "block";
-  adminKeyInput.style.display = "none";
-}
- else {
+          // Show overlay if desired (optional)
+          const overlay = document.getElementById("overlay");
+          if (overlay) overlay.style.display = "block";
+          document.getElementById("adminPanel").style.display = "block";
+          adminKeyInput.style.display = "none";
+        } else {
           alert("Incorrect key. Try again.");
         }
       }
     });
   }
-
   // Function to close admin panel and show the key input again
   window.closeAdminPanel = function() {
-  document.getElementById("adminPanel").style.display = "none";
-  document.getElementById("overlay").style.display = "none";
-  adminKeyInput.style.display = "block";
-};
-
+    document.getElementById("adminPanel").style.display = "none";
+    const overlay = document.getElementById("overlay");
+    if (overlay) overlay.style.display = "none";
+    adminKeyInput.style.display = "block";
+  };
 
   // --- Scroll Projects Functionality ---
   window.scrollProjects = function(containerId, direction) {
@@ -49,21 +49,23 @@ document.addEventListener('DOMContentLoaded', () => {
     container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
   };
 
-  // --- Initialize Supabase and Upload Functionality ---
-  // (Make sure to update these with your actual values)
+  // --- Initialize Supabase Client ---
   const SUPABASE_URL = 'https://nywdhxarhxmyfwjrjbrf.supabase.co';
   const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im55d2RoeGFyaHhteWZ3anJqYnJmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAyMzcxNzEsImV4cCI6MjA1NTgxMzE3MX0.7UT3t6KOxeP5wdHzbKTj6sIU3LXU5Cz4106gN5gAXz0';
   const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+  // --- Upload Form Handler ---
   const uploadForm = document.getElementById('uploadForm');
   if (uploadForm) {
     uploadForm.addEventListener('submit', async (event) => {
       event.preventDefault();
 
-      const uploadType = document.getElementById('uploadType').value;
+      // Retrieve form values
+      const category = document.getElementById('uploadCategory').value;
       const imageInput = document.getElementById('imageInput');
       const imageName = document.getElementById('imageName').value;
-      const imageTitle = document.getElementById('imageTitle').value;
+      const imageDescription = document.getElementById('imageDescription').value;
+      const imageDate = document.getElementById('imageDate').value;
 
       if (!imageInput.files || !imageInput.files[0]) {
         alert('Please select an image file.');
@@ -73,12 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const file = imageInput.files[0];
       const fileExt = file.name.split('.').pop();
       const fileName = `${Date.now()}.${fileExt}`;
-      const filePath = `${uploadType}/${fileName}`;
+      const filePath = `${category}/${fileName}`;
 
-      // Replace 'your-bucket-name' with your actual bucket name in Supabase
+      // Upload image to Supabase Storage
       const { data: storageData, error: storageError } = await supabaseClient
         .storage
-        .from('your-bucket-name')
+        .from('your-bucket-name')  // Update with your bucket name
         .upload(filePath, file);
 
       if (storageError) {
@@ -98,13 +100,16 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Insert image metadata into the table (if needed)
+      // Insert image metadata into the database table.
+      // Ensure your table has columns matching these keys: category, name, description, date, imageurl
       const { data: dbData, error: dbError } = await supabaseClient
         .from('uploads')
         .insert([{
-          type: uploadType,      // Ensure your table column is "type"
-          name: imageName,       // Column "name"
-          imageurl: publicURL    // Column "imageurl"
+          category: category,
+          name: imageName,
+          description: imageDescription,
+          date: imageDate,
+          imageurl: publicURL
         }]);
 
       if (dbError) {
@@ -113,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Display the new card
+      // Create a new card element to display the uploaded data
       const card = document.createElement('div');
       card.classList.add('project');
 
@@ -123,24 +128,41 @@ document.addEventListener('DOMContentLoaded', () => {
       img.style.width = '100%';
 
       const titleEl = document.createElement('h3');
-      titleEl.textContent = imageTitle;
+      titleEl.textContent = imageName;
+
+      const descEl = document.createElement('p');
+      descEl.textContent = imageDescription;
+
+      const dateEl = document.createElement('p');
+      dateEl.textContent = imageDate;
 
       card.appendChild(img);
       card.appendChild(titleEl);
+      card.appendChild(descEl);
+      card.appendChild(dateEl);
 
-      // Append card based on upload type
-      if (uploadType === 'project') {
-        document.getElementById('projectsContainer').appendChild(card);
-      } else if (uploadType === 'certificate') {
-        document.getElementById('coursesContainer').appendChild(card);
-      } else if (uploadType === 'uidesign') {
-        document.getElementById('uidesignsContainer').appendChild(card);
+      // Append the new card to the corresponding container based on category.
+      let containerId = '';
+      if (category === 'project') {
+        containerId = 'projectsContainer';
+      } else if (category === 'certificate') {
+        containerId = 'coursesContainer';
+      } else if (category === 'uidesign') {
+        containerId = 'uidesignsContainer';
+      }
+      const container = document.getElementById(containerId);
+      if (container) {
+        container.appendChild(card);
+      } else {
+        console.error('No container found for category: ' + category);
       }
 
-      // Reset form and hide admin panel
+      // Reset the form and hide the admin panel (restore key input)
       uploadForm.reset();
       document.getElementById('adminPanel').style.display = 'none';
       adminKeyInput.style.display = 'block';
+      const overlay = document.getElementById("overlay");
+      if (overlay) overlay.style.display = "none";
     });
   }
 });
