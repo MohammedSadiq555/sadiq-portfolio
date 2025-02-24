@@ -52,110 +52,120 @@ document.addEventListener('DOMContentLoaded', () => {
   const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
   // --- Upload Form Handler ---
-  const uploadForm = document.getElementById('uploadForm');
-  if (uploadForm) {
-    uploadForm.addEventListener('submit', async (event) => {
-      event.preventDefault();
+  // --- Upload Form Handler ---
+const uploadForm = document.getElementById('uploadForm');
+if (uploadForm) {
+  uploadForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
 
-      // Retrieve form values using the updated IDs.
-      const category = document.getElementById('uploadCategory').value;
-      const imageInput = document.getElementById('imageInput');
-      const imageName = document.getElementById('imageName').value;
-      const imageDescription = document.getElementById('imageDescription').value;
-      const imageDate = document.getElementById('imageDate').value;
+    // Retrieve form values
+    const category = document.getElementById('uploadCategory').value;
+    const imageInput = document.getElementById('imageInput');
+    const imageName = document.getElementById('imageName').value;
+    const imageDescription = document.getElementById('imageDescription').value;
+    const imageDate = document.getElementById('imageDate').value;
 
-      if (!imageInput.files || !imageInput.files[0]) {
-        alert('Please select an image file.');
-        return;
-      }
+    if (!imageInput.files || !imageInput.files[0]) {
+      alert('Please select an image file.');
+      return;
+    }
 
-      const file = imageInput.files[0];
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${Date.now()}.${fileExt}`;
-      const filePath = `${category}/${fileName}`;
+    const file = imageInput.files[0];
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${Date.now()}.${fileExt}`;
+    const filePath = `${category}/${fileName}`;
 
-      // Upload image to Supabase Storage.
-      const { data: storageData, error: storageError } = await supabaseClient
-        .storage
-        .from('image-uploads')  // Update with your bucket name
-        .upload(filePath, file);
-      if (storageError) {
-        console.error('Upload error:', storageError);
-        alert('Failed to upload image: ' + storageError.message);
-        return;
-      }
+    // Upload image to Supabase Storage.
+    const { data: storageData, error: storageError } = await supabaseClient
+      .storage
+      .from('image-uploads')  // Update with your actual bucket name
+      .upload(filePath, file);
+    if (storageError) {
+      console.error('Upload error:', storageError);
+      alert('Failed to upload image: ' + storageError.message);
+      return;
+    }
 
-      const { publicURL, error: publicUrlError } = supabaseClient
-        .storage
-        .from('your-bucket-name')
-        .getPublicUrl(filePath);
-      if (publicUrlError) {
-        console.error('Public URL error:', publicUrlError);
-        alert('Failed to get image URL: ' + publicUrlError.message);
-        return;
-      }
+    const { publicURL, error: publicUrlError } = supabaseClient
+      .storage
+      .from('image-uploads')
+      .getPublicUrl(filePath);
+    if (publicUrlError) {
+      console.error('Public URL error:', publicUrlError);
+      alert('Failed to get image URL: ' + publicUrlError.message);
+      return;
+    }
 
-      // Insert image metadata into the database table.
-      const { data: dbData, error: dbError } = await supabaseClient
-        .from('uploads')
-        .insert([{
-          category: category,
-          name: imageName,
-          description: imageDescription,
-          date: imageDate,
-          imageurl: publicURL
-        }]);
-      if (dbError) {
-        console.error('Database insert error:', dbError);
-        alert('Failed to save image metadata: ' + dbError.message);
-        return;
-      }
+    // Insert image metadata into the database table.
+    const { data: dbData, error: dbError } = await supabaseClient
+      .from('uploads')
+      .insert([{
+        category: category,
+        name: imageName,
+        description: imageDescription,
+        date: imageDate,
+        imageurl: publicURL
+      }]);
+    if (dbError) {
+      console.error('Database insert error:', dbError);
+      alert('Failed to save image metadata: ' + dbError.message);
+      return;
+    }
 
-      // Create a new card element to display the new upload.
-      const card = document.createElement('div');
-      card.classList.add('project');
+    // Create a new card element to display the new upload.
+    const card = document.createElement('div');
+    card.classList.add('project');
 
-      const img = document.createElement('img');
-      img.src = publicURL;
-      img.alt = imageName;
-      img.style.width = '100%';
+    // Image element
+    const img = document.createElement('img');
+    img.src = publicURL;
+    img.alt = imageName;
+    img.style.width = '100%';
 
-      const titleEl = document.createElement('h3');
-      titleEl.textContent = imageName;
+    // Info container for title, description, and date
+    const infoContainer = document.createElement('div');
+    infoContainer.classList.add('project-info');
 
-      const descEl = document.createElement('p');
-      descEl.textContent = imageDescription;
+    const titleEl = document.createElement('h3');
+    titleEl.textContent = imageName;
 
-      const dateEl = document.createElement('p');
-      dateEl.textContent = imageDate;
+    const descEl = document.createElement('p');
+    descEl.textContent = imageDescription;
 
-      card.appendChild(img);
-      card.appendChild(titleEl);
-      card.appendChild(descEl);
-      card.appendChild(dateEl);
+    const dateEl = document.createElement('p');
+    dateEl.textContent = imageDate;
 
-      // Append the card to the corresponding container based on category.
-      let containerId = '';
-      if (category === 'project') {
-        containerId = 'projectsContainer';
-      } else if (category === 'certificate') {
-        containerId = 'coursesContainer';
-      } else if (category === 'uidesign') {
-        containerId = 'uidesignsContainer';
-      }
-      const container = document.getElementById(containerId);
-      if (container) {
-        container.appendChild(card);
-      } else {
-        console.error('No container found for category: ' + category);
-      }
+    // Append the elements in order
+    infoContainer.appendChild(titleEl);
+    infoContainer.appendChild(descEl);
+    infoContainer.appendChild(dateEl);
 
-      // Reset the form and hide the admin panel (restore key input)
-      uploadForm.reset();
-      document.getElementById('adminPanel').style.display = 'none';
-      adminKeyInput.style.display = 'block';
-      const overlay = document.getElementById("overlay");
-      if (overlay) overlay.style.display = "none";
-    });
-  }
+    card.appendChild(img);
+    card.appendChild(infoContainer);
+
+    // Append the new card to the corresponding container based on category.
+    let containerId = '';
+    if (category === 'project') {
+      containerId = 'projectsContainer';
+    } else if (category === 'certificate') {
+      containerId = 'coursesContainer';
+    } else if (category === 'uidesign') {
+      containerId = 'uidesignsContainer';
+    }
+    const container = document.getElementById(containerId);
+    if (container) {
+      container.appendChild(card);
+    } else {
+      console.error('No container found for category: ' + category);
+    }
+
+    // Reset the form and hide the admin panel (restore key input)
+    uploadForm.reset();
+    document.getElementById('adminPanel').style.display = 'none';
+    adminKeyInput.style.display = 'block';
+    const overlay = document.getElementById("overlay");
+    if (overlay) overlay.style.display = "none";
+  });
+}
+
 });
