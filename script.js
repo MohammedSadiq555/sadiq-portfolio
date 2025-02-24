@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Upload image to Supabase Storage.
       const { data: storageData, error: storageError } = await supabaseClient
         .storage
-        .from('your-bucket-name')  // Update with your bucket name
+        .from('image-uploads')  // Update with your bucket name
         .upload(filePath, file);
       if (storageError) {
         console.error('Upload error:', storageError);
