@@ -88,18 +88,21 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      const { publicURL, error: publicUrlError } = supabaseClient
-        .storage
-        .from(bucketName)
-        .getPublicUrl(filePath);
-      if (publicUrlError) {
-        console.error('Public URL error:', publicUrlError);
-        alert('Failed to get image URL: ' + publicUrlError.message);
-        return;
-      }
+const { data: publicUrlData, error: publicUrlError } = supabaseClient
+  .storage
+  .from(bucketName)
+  .getPublicUrl(filePath);
 
-      // Log publicURL for debugging
-      console.log("Public URL:", publicURL);
+if (publicUrlError) {
+  console.error('Public URL error:', publicUrlError);
+  alert('Failed to get image URL: ' + publicUrlError.message);
+  return;
+}
+
+const publicURL = publicUrlData.publicUrl;  // extract the URL
+
+console.log("Public URL:", publicURL);
+
 
       // Insert image metadata into the database table.
       const { data: dbData, error: dbError } = await supabaseClient
