@@ -105,39 +105,46 @@
             top: -300px;
             left: 220px;
         }
-    .transformer{
-            position: absolute;
-            width: fit-content;
-            left: 540px;
-            bottom: 220px;
-            overflow: hidden;
-        }
-    }
-    .constant_1 {
-      color: rgb(26, 29, 209);
-      position: relative;
-      display: inline-block;
-      overflow: hidden;
-    }
-    .constant_1:before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      background-color: rgb(255, 255, 255);
-      border-left: 2px solid rgb(0, 0, 73);
-      animation: animate 4s steps(11) infinite;
-    }
-    @keyframes animate {
-      40%, 60% {
-        left: 100%;
-      }
-      100% {
-        left: 0%;
-      }
-    }
+   .transformer {
+  position: absolute;
+  width: fit-content;
+  left: 540px;
+  bottom: 220px;
+  /* Remove overflow: hidden from here */
+}
+
+.dynamicTextWrapper {
+  overflow: hidden; /* Only hide overflow for the dynamic text */
+}
+
+.constant_1 {
+  color: rgb(26, 29, 209);
+  position: relative;
+  display: inline-block;
+}
+
+/* Apply animation pseudo-element only on .constant_1 */
+.constant_1:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  border-left: 2px solid rgb(0, 0, 73);
+  animation: animate 4s steps(11) infinite;
+}
+
+@keyframes animate {
+  40%, 60% {
+    left: 100%;
+  }
+  100% {
+    left: 0%;
+  }
+}
+
     /* Admin Panel Styles (Enhanced) */
     #adminPanel {
       position: fixed;
@@ -286,9 +293,14 @@
       <div class="diamond"></div>
       <img src="sadi.png" alt="" class="sad">
       <div class="transformer">
-        <b><span class="constant text">I AM A </span></b>
-        <span class="constant_1 text"></span>
-      </div>
+  <div class="staticText">
+    <b><span class="constant text">I AM A </span></b>
+  </div>
+  <div class="dynamicTextWrapper">
+    <span class="constant_1 text"></span>
+  </div>
+</div>
+
     </div>
 
     <!-- Admin Panel (hidden by default) -->
