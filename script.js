@@ -19,9 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     adminKeyInput.addEventListener("keyup", (event) => {
       if (event.key === "Enter") {
         if (adminKeyInput.value === adminKey) {
-          document.getElementById("adminPanel").style.display = "block";
-          adminKeyInput.style.display = "none";
-        } else {
+  document.getElementById("overlay").style.display = "block";
+  document.getElementById("adminPanel").style.display = "block";
+  adminKeyInput.style.display = "none";
+}
+ else {
           alert("Incorrect key. Try again.");
         }
       }
@@ -30,9 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Function to close admin panel and show the key input again
   window.closeAdminPanel = function() {
-    document.getElementById("adminPanel").style.display = "none";
-    adminKeyInput.style.display = "block";
-  };
+  document.getElementById("adminPanel").style.display = "none";
+  document.getElementById("overlay").style.display = "none";
+  adminKeyInput.style.display = "block";
+};
+
 
   // --- Scroll Projects Functionality ---
   window.scrollProjects = function(containerId, direction) {
