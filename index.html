@@ -11,14 +11,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Oswald:wght@200..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
   <style>
     /* Global Styles */
-    *{
-            font-family: "Quicksand", sans-serif;
-            box-sizing: border-box;
-      
-            /* color: white; */
-
-            /* border: solid red 1px; */
-        }
+    * {
+      font-family: "Quicksand", sans-serif;
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
       padding: 0;
@@ -56,102 +52,85 @@
       text-decoration: none;
       color: white;
     }
-    /* Mid Section (Restored Original Styles with adjustments) */
-    span {
-      color: black;
-      font-size: 50px;
-    }
+    /* Mid Section (Original Styles) */
     .mid_1 {
-      margin-bottom:150px;
       margin-top: 50px;
       height: 400px;
       width: 100%;
       position: relative;
+      margin-bottom: 150px; /* Added extra bottom margin so sections don't overlap */
     }
-.diamond{
-            height: 200px;
-            width: 200px;
-            border-radius: 30px;
-            background-color: rgb(26, 29, 209);
-            transform: rotate(45deg);
-            box-shadow: -5px -5px 10px white;
-        }
-
-        .sad{
-            height: 350px;
-            position: relative;
-            top: -580px;
-            left: 310px;
-            z-index: 2;
-            filter: brightness(1.7);
-        }
-
-        .diamond:first-child{
-            z-index: 4;
-            position: relative;
-            top: 290px;
-            left: 300px;
-        }
-
-        .diamond:nth-child(2){
-            z-index: 3;
-            background-color: #b1b1b1;
-            position: relative;
-            left: 170px;
-        }
-
-        .diamond:nth-child(3){
-            z-index: 1;
-            position: relative;
-            top: -300px;
-            left: 220px;
-        }
-   .transformer {
-     display:flex;
-  position: absolute;
-  width: fit-content;
-  left: 540px;
-  bottom: 220px;
-  /* Remove overflow: hidden from here */
-}
-
-.dynamicTextWrapper {
-  overflow: hidden;
-  position: relative;
-  display: inline-block;
-  margin-left: 20px; /* Increase this value as needed */
-}
-
-
-.constant_1 {
-  color: rgb(26, 29, 209);
-  position: relative;
-  display: inline-block;
-}
-
-/* Apply animation pseudo-element only on .constant_1 */
-.constant_1:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: rgb(255, 255, 255);
-  border-left: 2px solid rgb(0, 0, 73);
-  animation: animate 4s steps(11) infinite;
-}
-
-@keyframes animate {
-  40%, 60% {
-    left: 100%;
-  }
-  100% {
-    left: 0%;
-  }
-}
-
-    /* Admin Panel Styles (Enhanced) */
+    .diamond {
+      height: 200px;
+      width: 200px;
+      border-radius: 30px;
+      background-color: rgb(26, 29, 209);
+      transform: rotate(45deg);
+      box-shadow: -5px -5px 10px white;
+    }
+    .sad {
+      height: 350px;
+      position: relative;
+      top: -580px;
+      left: 310px;
+      z-index: 2;
+      filter: brightness(1.7);
+    }
+    .diamond:first-child {
+      z-index: 4;
+      position: relative;
+      top: 290px;
+      left: 300px;
+    }
+    .diamond:nth-child(2) {
+      z-index: 3;
+      background-color: #b1b1b1;
+      position: relative;
+      left: 170px;
+    }
+    .diamond:nth-child(3) {
+      z-index: 1;
+      position: relative;
+      top: -300px;
+      left: 220px;
+    }
+    .transformer {
+      display: flex;
+      position: absolute;
+      width: fit-content;
+      left: 540px;
+      bottom: 220px;
+    }
+    .staticText {
+      /* No extra styling needed for static part */
+    }
+    .dynamicTextWrapper {
+      overflow: hidden;
+      position: relative;
+      display: inline-block;
+      margin-left: 20px;
+    }
+    .constant_1 {
+      color: rgb(26, 29, 209);
+      position: relative;
+      display: inline-block;
+    }
+    .constant_1:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: rgb(255, 255, 255);
+      border-left: 2px solid rgb(0, 0, 73);
+      animation: animate 4s steps(11) infinite;
+    }
+    @keyframes animate {
+      40%, 60% { left: 100%; }
+      100% { left: 0%; }
+    }
+    /* Admin Panel Styles */
     #adminPanel {
       position: fixed;
       top: 50%;
@@ -161,7 +140,7 @@
       padding: 30px;
       width: 90%;
       max-width: 500px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
       border-radius: 8px;
       z-index: 1000;
     }
@@ -181,7 +160,9 @@
     }
     #adminPanel input[type="text"],
     #adminPanel input[type="file"],
-    #adminPanel select {
+    #adminPanel select,
+    #adminPanel textarea,
+    #adminPanel input[type="date"] {
       padding: 8px;
       border: 1px solid #ccc;
       border-radius: 4px;
@@ -199,6 +180,17 @@
     #adminPanel button:hover {
       background-color: rgb(46, 2, 116);
     }
+    /* Overlay for Admin Panel */
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 900;
+      display: none;
+    }
     /* Sections: Projects, Courses, UI Designs */
     .projects-section {
       padding: 20px;
@@ -207,7 +199,7 @@
     }
     .projects-section h2 {
       margin-bottom: 20px;
-      color: rgb(0,0,0);
+      color: rgb(26, 29, 209);
     }
     .projects-container {
       display: flex;
@@ -216,19 +208,14 @@
       padding: 10px;
       scroll-snap-type: x mandatory;
     }
-    #overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 900;
-  display: none;
-}
-
     .projects-container::-webkit-scrollbar {
       display: none;
+    }
+    /* Initially empty containers */
+    #projectsContainer,
+    #coursesContainer,
+    #uidesignsContainer {
+      min-height: 50px;
     }
     .project {
       flex: 0 0 auto;
@@ -237,7 +224,7 @@
       padding: 15px;
       border-radius: 10px;
       text-align: center;
-      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
       scroll-snap-align: start;
     }
     .project .image-placeholder {
@@ -310,111 +297,66 @@
       <div class="diamond"></div>
       <img src="sadi.png" alt="" class="sad">
       <div class="transformer">
-  <div class="staticText">
-    <b><span class="constant text">I AM A   </span></b>
-  </div>
-  <div class="dynamicTextWrapper">
-    <span class="constant_1 text"></span>
-  </div>
-</div>
-
+        <div class="staticText">
+          <b><span class="constant text">I AM A   </span></b>
+        </div>
+        <div class="dynamicTextWrapper">
+          <span class="constant_1 text"></span>
+        </div>
+      </div>
     </div>
-    <div id="overlay" style="display: none;"></div>
-
+    <div id="overlay"></div>
     <!-- Admin Panel (hidden by default) -->
     <div id="adminPanel" style="display: none;">
       <h2>Admin Panel</h2>
-     <form id="uploadForm">
-  <label for="uploadCategory">Category:</label>
-  <select id="uploadCategory" required>
-    <option value="">Select Category</option>
-    <option value="project">Project</option>
-    <option value="certificate">Certificate</option>
-    <option value="uidesign">UI Design</option>
-  </select>
-
-  <label for="imageInput">Upload Image:</label>
-  <input type="file" id="imageInput" accept="image/*" required>
-
-  <label for="imageName">Name:</label>
-  <input type="text" id="imageName" placeholder="Enter image name" required>
-
-  <label for="imageDescription">Description:</label>
-  <textarea id="imageDescription" placeholder="Enter description" required></textarea>
-
-  <label for="imageDate">Date:</label>
-  <input type="date" id="imageDate" required>
-
-  <button type="submit">Upload</button>
-</form>
-
+      <form id="uploadForm">
+        <label for="uploadCategory">Category:</label>
+        <select id="uploadCategory" required>
+          <option value="">Select Category</option>
+          <option value="project">Project</option>
+          <option value="certificate">Certificate</option>
+          <option value="uidesign">UI Design</option>
+        </select>
+        <label for="imageInput">Upload Image:</label>
+        <input type="file" id="imageInput" accept="image/*" required>
+        <label for="imageName">Name:</label>
+        <input type="text" id="imageName" placeholder="Enter image name" required>
+        <label for="imageDescription">Description:</label>
+        <textarea id="imageDescription" placeholder="Enter description" required></textarea>
+        <label for="imageDate">Date:</label>
+        <input type="date" id="imageDate" required>
+        <button type="submit">Upload</button>
+      </form>
       <button onclick="closeAdminPanel()">Close</button>
     </div>
-
     <!-- Projects Section -->
     <div class="projects-section" id="projectsSection">
       <h2>Projects</h2>
       <button class="nav-button prev" onclick="scrollProjects('projectsContainer', -1)">&#9664;</button>
       <div class="projects-container" id="projectsContainer">
-        <div class="project">
-          <div class="image-placeholder" style="background-color: red;"></div>
-          <h3>Project One</h3>
-          <p>Type: Web Project</p>
-          <p>Date: Jan 2024</p>
-        </div>
-        <div class="project">
-          <div class="image-placeholder" style="background-color: blue;"></div>
-          <h3>Project Two</h3>
-          <p>Type: Web Project</p>
-          <p>Date: Feb 2024</p>
-        </div>
+        <!-- New project cards will be appended here -->
       </div>
       <button class="nav-button next" onclick="scrollProjects('projectsContainer', 1)">&#9654;</button>
     </div>
-
     <!-- Courses Section -->
     <div class="projects-section" id="coursesSection">
       <h2>Courses</h2>
       <button class="nav-button prev" onclick="scrollProjects('coursesContainer', -1)">&#9664;</button>
       <div class="projects-container" id="coursesContainer">
-        <div class="project">
-          <div class="image-placeholder" style="background-color: green;"></div>
-          <h3>Course One</h3>
-          <p>Type: Web Project</p>
-          <p>Date: Jan 2024</p>
-        </div>
-        <div class="project">
-          <div class="image-placeholder" style="background-color: purple;"></div>
-          <h3>Course Two</h3>
-          <p>Type: Web Project</p>
-          <p>Date: Feb 2024</p>
-        </div>
+        <!-- New course cards will be appended here -->
       </div>
       <button class="nav-button next" onclick="scrollProjects('coursesContainer', 1)">&#9654;</button>
     </div>
-
     <!-- UI Designs Section -->
     <div class="projects-section" id="uidesignsSection">
       <h2>UI Designs</h2>
       <button class="nav-button prev" onclick="scrollProjects('uidesignsContainer', -1)">&#9664;</button>
       <div class="projects-container" id="uidesignsContainer">
-        <div class="project">
-          <div class="image-placeholder" style="background-color: orange;"></div>
-          <h3>UI Design One</h3>
-          <p>Type: UI Design</p>
-          <p>Date: Jan 2024</p>
-        </div>
-        <div class="project">
-          <div class="image-placeholder" style="background-color: teal;"></div>
-          <h3>UI Design Two</h3>
-          <p>Type: UI Design</p>
-          <p>Date: Feb 2024</p>
-        </div>
+        <!-- New UI design cards will be appended here -->
       </div>
       <button class="nav-button next" onclick="scrollProjects('uidesignsContainer', 1)">&#9654;</button>
     </div>
   </div>
-
   <footer style="background-color: rgb(26, 29, 209); color: white; padding: 20px; text-align: center; margin-top: 90px;">
     <p>Contact me at: sadiq.kushnooda@gmail.com</p>
     <div>
