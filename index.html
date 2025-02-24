@@ -324,21 +324,30 @@
     <!-- Admin Panel (hidden by default) -->
     <div id="adminPanel" style="display: none;">
       <h2>Admin Panel</h2>
-      <form id="uploadForm">
-        <label for="uploadType">Type:</label>
-        <select id="uploadType">
-          <option value="project">Project</option>
-          <option value="certificate">Certificate</option>
-          <option value="uidesign">UI Design</option>
-        </select>
-        <label for="imageName">Image Name:</label>
-        <input type="text" id="imageName" required>
-        <label for="imageTitle">Image Title:</label>
-        <input type="text" id="imageTitle" required>
-        <label for="imageInput">Upload Image:</label>
-        <input type="file" id="imageInput" accept="image/*" required>
-        <button type="submit">Upload</button>
-      </form>
+     <form id="uploadForm">
+  <label for="uploadCategory">Category:</label>
+  <select id="uploadCategory" required>
+    <option value="">Select Category</option>
+    <option value="project">Project</option>
+    <option value="certificate">Certificate</option>
+    <option value="uidesign">UI Design</option>
+  </select>
+
+  <label for="imageInput">Upload Image:</label>
+  <input type="file" id="imageInput" accept="image/*" required>
+
+  <label for="imageName">Name:</label>
+  <input type="text" id="imageName" placeholder="Enter image name" required>
+
+  <label for="imageDescription">Description:</label>
+  <textarea id="imageDescription" placeholder="Enter description" required></textarea>
+
+  <label for="imageDate">Date:</label>
+  <input type="date" id="imageDate" required>
+
+  <button type="submit">Upload</button>
+</form>
+
       <button onclick="closeAdminPanel()">Close</button>
     </div>
 
