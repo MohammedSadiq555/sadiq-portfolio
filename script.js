@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
       event.preventDefault();
 
       // Retrieve form values
-      const category = document.getElementById('uploadCategory').value;
+      const category = document.getElementById('uploadType').value;
       const imageInput = document.getElementById('imageInput');
       const imageName = document.getElementById('imageName').value;
       const imageDescription = document.getElementById('imageDescription').value;
