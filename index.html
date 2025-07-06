@@ -473,6 +473,38 @@ function scrollProjects(containerId, direction) {
             const scrollAmount = 270; 
             container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
         }
+
+        async function loadProjects() {
+    try {
+        const response = await fetch('/api/get-projects'); // API endpoint to get projects
+        const projects = await response.json();
+
+        // Select both project containers
+        const containers = [document.getElementById('projectsContainer'), document.getElementById('projectsContainer2')];
+
+        containers.forEach(container => {
+            container.innerHTML = ''; // Clear existing content
+
+            projects.forEach(project => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'project';
+                projectCard.innerHTML = `
+                    <div class="image-placeholder" style="background-image: url('${project.image}'); background-size: cover; background-position: center;"></div>
+                    <h3>${project.title}</h3>
+                    <p>Type: ${project.description}</p>
+                    <p>Date: ${project.date}</p>
+                `;
+                container.appendChild(projectCard);
+            });
+        });
+    } catch (error) {
+        console.error('Error loading projects:', error);
+    }
+}
+
+// Call the function when page loads
+window.onload = loadProjects;
+
     </script>
 </body>
 </html>
