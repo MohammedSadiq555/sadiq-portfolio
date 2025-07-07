@@ -96,7 +96,8 @@ label {
 <body>
   <div>
     <h1>Project Uploader</h1>
-    <form id="projectForm">
+    <form id="projectForm" enctype="multipart/form-data">
+
       <input type="number" id="projectNumber" name="projectNumber" placeholder="Display Order Number" required />
 
 <select id="projectCategory" name="projectCategory" required>
@@ -109,7 +110,7 @@ label {
 
       <textarea id="projectDescription" name="projectDescription" rows="3" placeholder="Project Description" required></textarea>
 
-      <input type="url" id="projectLink" name="projectLink" placeholder="Project Link" required />
+      <input type="file" id="projectImage" name="projectImage" accept="image/*" required />
 
       <input type="url" id="projectImage" name="projectImage" placeholder="Image URL" required />
 
