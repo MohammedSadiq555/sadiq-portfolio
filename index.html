@@ -276,7 +276,7 @@ function typeEffect() {
 window.onload = () => {
     loadProjects(); // Your project loading function
     typeEffect();   // Typing animation starts
-};*/
+};
 
         const text = document.querySelector(".constant_1");
 let currentIndex = 0;
@@ -289,7 +289,24 @@ const textLoad = () => {
         currentIndex = (currentIndex + 1) % texts.length;
     }, 4000);
 };
-textLoad();
+textLoad();*/
+
+        window.onload = () => {
+    const text = document.querySelector(".constant_1");
+    let currentIndex = 0;
+    const texts = ["SOFTWARE DEVELOPER", "UI DESIGNER", "WEB DEVELOPER"];
+    text.textContent = texts[currentIndex];
+
+    const textLoad = () => {
+        setInterval(() => {
+            text.textContent = texts[currentIndex];
+            currentIndex = (currentIndex + 1) % texts.length;
+        }, 4000);
+    };
+
+    textLoad();
+    loadProjects(); // Also load your projects here
+};
 
 
 
