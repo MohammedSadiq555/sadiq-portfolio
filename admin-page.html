@@ -126,45 +126,37 @@ label {
 
 
   <script>
-    document.getElementById('projectForm').addEventListener('submit', async function(e) {
+     document.getElementById('projectForm').addEventListener('submit', async function (e) {
       e.preventDefault();
-     const formData = {
-    number: document.getElementById('projectNumber').value,
-    title: document.getElementById('projectTitle').value,
-    description: document.getElementById('projectDescription').value,
-    link: document.getElementById('projectLink').value,
-    image: document.getElementById('projectImage').value,
-    date: document.getElementById('projectDate').value,
-    category: document.getElementById('projectCategory').value
-};
 
+      const form = document.getElementById('projectForm');
+      const formData = new FormData(form);
 
       const response = await fetch('/api/upload-project', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: formData
       });
 
       if (response.ok) {
         alert('Project uploaded successfully!');
-        document.getElementById('projectForm').reset();
+        form.reset();
       } else {
         alert('Error uploading project.');
       }
     });
 
+    // Delete Project by ID
     async function deleteProject() {
-    const id = document.getElementById('deleteId').value;
-    if (confirm('Are you sure you want to delete this project?')) {
+      const id = document.getElementById('deleteId').value;
+      if (confirm('Are you sure you want to delete this project?')) {
         const response = await fetch(`/api/delete-project/${id}`, { method: 'DELETE' });
         if (response.ok) {
-            alert('Project deleted successfully!');
+          alert('Project deleted successfully!');
         } else {
-            alert('Error deleting project.');
+          alert('Error deleting project.');
         }
+      }
     }
-}
-
   </script>
 </body>
 </html>
