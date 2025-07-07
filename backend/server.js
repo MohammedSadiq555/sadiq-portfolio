@@ -30,13 +30,23 @@ db.connect(err => {
 
 // POST - Add Project
 app.post('/api/upload-project', (req, res) => {
-    const { title, description, date, image } = req.body;
-    const sql = 'INSERT INTO projects (title, description, date, image) VALUES (?, ?, ?, ?)';
-    db.query(sql, [title, description, date, image], (err, result) => {
+    const { number, title, description, date, image, category } = req.body;
+    const sql = 'INSERT INTO projects (number, title, description, date, image, category) VALUES (?, ?, ?, ?, ?, ?)';
+    db.query(sql, [number, title, description, date, image, category], (err, result) => {
         if (err) return res.status(500).send(err);
         res.send('Project added successfully.');
     });
 });
+
+app.delete('/api/delete-project/:id', (req, res) => {
+    const { id } = req.params;
+    const sql = 'DELETE FROM projects WHERE id = ?';
+    db.query(sql, [id], (err, result) => {
+        if (err) return res.status(500).send(err);
+        res.send('Project deleted successfully.');
+    });
+});
+
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
