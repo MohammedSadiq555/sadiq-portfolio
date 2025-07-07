@@ -29,7 +29,7 @@ db.connect(err => {
 });
 
 // POST - Add Project
-app.post('/api/add-project', (req, res) => {
+app.post('/api/upload-project', (req, res) => {
     const { title, description, date, image } = req.body;
     const sql = 'INSERT INTO projects (title, description, date, image) VALUES (?, ?, ?, ?)';
     db.query(sql, [title, description, date, image], (err, result) => {
@@ -37,6 +37,7 @@ app.post('/api/add-project', (req, res) => {
         res.send('Project added successfully.');
     });
 });
+
 
 // GET - Fetch Projects
 app.get('/api/get-projects', (req, res) => {
