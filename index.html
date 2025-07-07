@@ -248,17 +248,36 @@
 
     <script>
         const text = document.querySelector(".constant_1");
-        let currentIndex = 0;
-        const texts = ["SOFTWARE DEVELOPER", "UI DESIGNER", "WEB DEVELOPER"];
-        text.textContent = texts[currentIndex];
+const texts = ["SOFTWARE DEVELOPER", "UI DESIGNER", "WEB DEVELOPER"];
+let currentIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
 
-        const textLoad = () => {
-            setInterval(() => {
-                text.textContent = texts[currentIndex];
-                currentIndex = (currentIndex + 1) % texts.length;
-            }, 4000);
-        };
-        textLoad();
+function typeEffect() {
+    let currentText = texts[currentIndex];
+    if (isDeleting) {
+        text.textContent = currentText.substring(0, charIndex--);
+    } else {
+        text.textContent = currentText.substring(0, charIndex++);
+    }
+
+    if (!isDeleting && charIndex === currentText.length) {
+        isDeleting = true;
+        setTimeout(typeEffect, 1000); // Pause before deleting
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        currentIndex = (currentIndex + 1) % texts.length;
+        setTimeout(typeEffect, 500); // Pause before typing next
+    } else {
+        setTimeout(typeEffect, isDeleting ? 100 : 200); // Typing and deleting speed
+    }
+}
+
+window.onload = () => {
+    loadProjects(); // Your project loading function
+    typeEffect();   // Typing animation starts
+};
+
 
         function checkSecret() {
             const secretInput = document.getElementById('secretKey').value;
