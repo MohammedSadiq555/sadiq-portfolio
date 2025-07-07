@@ -289,7 +289,7 @@ const textLoad = () => {
         currentIndex = (currentIndex + 1) % texts.length;
     }, 4000);
 };
-textLoad();*/
+textLoad();
 
         window.onload = () => {
     const text = document.querySelector(".constant_1");
@@ -306,7 +306,41 @@ textLoad();*/
 
     textLoad();
     loadProjects(); // Also load your projects here
+};*/
+
+        window.onload = () => {
+    const text = document.querySelector(".constant_1");
+    const texts = ["SOFTWARE DEVELOPER", "UI DESIGNER", "WEB DEVELOPER"];
+    let currentIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function type() {
+        const currentText = texts[currentIndex];
+        let displayedText = currentText.substring(0, charIndex);
+        text.textContent = displayedText;
+
+        if (!isDeleting && charIndex < currentText.length) {
+            charIndex++;
+            setTimeout(type, 150); // typing speed
+        } else if (isDeleting && charIndex > 0) {
+            charIndex--;
+            setTimeout(type, 100); // deleting speed
+        } else {
+            if (!isDeleting) {
+                isDeleting = true;
+                setTimeout(type, 2000); // wait before deleting
+            } else {
+                isDeleting = false;
+                currentIndex = (currentIndex + 1) % texts.length;
+                setTimeout(type, 500); // wait before typing next word
+            }
+        }
+    }
+
+    type(); // Start the typing animation
 };
+
 
 
 
