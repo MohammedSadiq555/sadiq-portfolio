@@ -38,6 +38,15 @@ app.post('/api/upload-project', (req, res) => {
     });
 });
 
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, '../images')); // Save images in the correct folder
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname)); // Unique filename
+    }
+});
+
 
 // GET - Fetch Projects
 app.get('/api/get-projects', (req, res) => {
