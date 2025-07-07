@@ -47,6 +47,8 @@ const storage = multer.diskStorage({
     }
 });
 
+app.use('/images', express.static(path.join(__dirname, '../images')));
+
 
 // GET - Fetch Projects
 app.get('/api/get-projects', (req, res) => {
