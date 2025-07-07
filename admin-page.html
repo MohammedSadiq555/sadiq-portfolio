@@ -82,6 +82,14 @@
   <div>
     <h1>Project Uploader</h1>
     <form id="projectForm">
+      <input type="number" id="projectNumber" name="projectNumber" placeholder="Display Order Number" required />
+
+<select id="projectCategory" name="projectCategory" required>
+    <option value="Projects">Projects</option>
+    <option value="Achievements">Achievements</option>
+    <option value="Courses">Courses</option>
+</select>
+
       <input type="text" id="projectTitle" name="projectTitle" placeholder="Project Title" required />
 
       <textarea id="projectDescription" name="projectDescription" rows="3" placeholder="Project Description" required></textarea>
@@ -96,16 +104,24 @@
     </form>
   </div>
 
+  <h3>Delete a Project</h3>
+<input type="number" id="deleteId" placeholder="Project ID" required />
+<button onclick="deleteProject()">Delete</button>
+
+
   <script>
     document.getElementById('projectForm').addEventListener('submit', async function(e) {
       e.preventDefault();
-      const formData = {
-        title: document.getElementById('projectTitle').value,
-        description: document.getElementById('projectDescription').value,
-        link: document.getElementById('projectLink').value,
-        image: document.getElementById('projectImage').value,
-        date: document.getElementById('projectDate').value,
-      };
+     const formData = {
+    number: document.getElementById('projectNumber').value,
+    title: document.getElementById('projectTitle').value,
+    description: document.getElementById('projectDescription').value,
+    link: document.getElementById('projectLink').value,
+    image: document.getElementById('projectImage').value,
+    date: document.getElementById('projectDate').value,
+    category: document.getElementById('projectCategory').value
+};
+
 
       const response = await fetch('/api/upload-project', {
         method: 'POST',
@@ -120,6 +136,19 @@
         alert('Error uploading project.');
       }
     });
+
+    async function deleteProject() {
+    const id = document.getElementById('deleteId').value;
+    if (confirm('Are you sure you want to delete this project?')) {
+        const response = await fetch(`/api/delete-project/${id}`, { method: 'DELETE' });
+        if (response.ok) {
+            alert('Project deleted successfully!');
+        } else {
+            alert('Error deleting project.');
+        }
+    }
+}
+
   </script>
 </body>
 </html>
