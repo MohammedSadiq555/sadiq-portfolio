@@ -220,157 +220,96 @@
 
     </style> -->
 
-    <style>
-body::before {
-    content: '';
-    position: fixed;
-    top: 15px;
-    bottom: 15px;
-    left: 15px;
-    right: 15px;
-    border: 2px solid #00f0ff;
-    box-shadow: 0 0 20px #00f0ff, inset 0 0 20px #00f0ff;
-    z-index: -1;
-    border-radius: 10px;
-}
-* {
+    <style>* {
     font-family: "Quicksand", sans-serif;
     box-sizing: border-box;
-    color: #ffffff;
-}
-
-body {
-    background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
     margin: 0;
     padding: 0;
 }
 
+body {
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+/* Header */
 .header {
-    background-color: #0a0a0a;
+    background-color: #1a1dd1;
     height: 150px;
     width: 100%;
-    border-bottom: 3px solid #00f0ff;
+    border-bottom: 5px solid #2e0274;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    color: white;
 }
 
 .myself {
-    font-size: 38px;
-    position: absolute;
-    top: 20px;
-    left: 30px;
-    color: #00f0ff;
-    text-shadow: 0 0 10px #00f0ff;
+    font-size: 36px;
 }
 
-a {
-    margin-right: 40px;
+nav a {
+    margin-left: 30px;
     text-decoration: none;
-    color: #00f0ff;
-    text-shadow: 0 0 5px #00f0ff;
-    transition: color 0.3s;
+    color: white;
+    font-weight: 500;
 }
-a:hover {
-    color: #ffffff;
-}
-
-nav {
-    position: absolute;
-    right: 10px;
-    top: 70px;
+nav a:hover {
+    text-decoration: underline;
 }
 
-/* Hero Section */
+/* Hero section */
 .mid_1 {
-    margin-top: 50px;
-    height: 400px;
-    width: auto;
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 60px 20px;
 }
 
 .picklet {
-    position: absolute;
-    left: -80px;
-}
-
-.transformer {
-    position: absolute;
-    width: 800px;
-    left: 500px;
-    bottom: 180px;
-    overflow: hidden;
-}
-
-.constant {
-    display: inline;
     position: relative;
-    bottom: 13px;
-    font-size: 50px;
-}
-
-.constant_1 {
-    position: relative;
-    display: inline-block;
-    overflow: hidden;
-    color: #00f0ff;
-    text-shadow: 0 0 10px #00f0ff;
-}
-
-span {
-    font-size: 50px;
 }
 
 .diamond {
-    height: 200px;
-    width: 200px;
-    border-radius: 30px;
-    background-color: #00f0ff;
+    height: 150px;
+    width: 150px;
+    border-radius: 20px;
+    background-color: #1a1dd1;
     transform: rotate(45deg);
-    box-shadow: -5px -5px 15px #00f0ff;
+    margin-bottom: 20px;
 }
 
 .sad {
-    height: 350px;
-    position: relative;
-    top: -580px;
-    left: 310px;
+    height: 300px;
+    position: absolute;
+    top: -250px;
+    left: 75px;
     z-index: 2;
-    filter: brightness(1.7);
 }
 
-.diamond:first-child {
-    z-index: 4;
-    position: relative;
-    top: 290px;
-    left: 300px;
+.transformer {
+    max-width: 600px;
 }
 
-.diamond:nth-child(2) {
-    z-index: 3;
-    background-color: #333;
-    position: relative;
-    left: 170px;
-}
-
-.diamond:nth-child(3) {
-    z-index: 1;
-    position: relative;
-    top: -300px;
-    left: 220px;
+.constant,
+.constant_1 {
+    font-size: 40px;
+    font-weight: bold;
 }
 
 /* Skills Section */
 #skills {
-    background-color: #181818;
+    background-color: #ffffff;
     padding: 50px 20px;
-    border-top: 1px solid #00f0ff;
-    border-bottom: 1px solid #00f0ff;
+    border-top: 1px solid #ddd;
 }
 
 #skills h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 40px;
-    color: #00f0ff;
-    text-shadow: 0 0 10px #00f0ff;
+    color: #1a1dd1;
 }
 
 #skills div > div {
@@ -381,22 +320,18 @@ span {
     width: 60px;
 }
 
-/* Project/Courses Container */
+/* Projects / Courses / Certificates Sections */
 .projects-section {
-    background-color: #141414;
-    padding: 40px 20px;
-    position: relative;
+    padding: 50px 20px;
     text-align: center;
-    margin-bottom: 50px;
-    border-top: 1px solid #00f0ff;
-    border-bottom: 1px solid #00f0ff;
+    background-color: #fff;
+    border-top: 1px solid #eee;
 }
 
 .projects-section h2 {
-    font-size: 2.2rem;
-    margin-bottom: 20px;
-    color: #00f0ff;
-    text-shadow: 0 0 10px #00f0ff;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #1a1dd1;
 }
 
 .projects-container {
@@ -415,19 +350,19 @@ span {
 .project {
     flex: 0 0 auto;
     width: 250px;
-    background-color: #1e1e1e;
+    background-color: #f0f0f0;
     padding: 15px;
-    border-radius: 10px;
+    border-radius: 12px;
     text-align: center;
-    box-shadow: 0 0 10px #00f0ff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     scroll-snap-align: start;
 }
 
 .project .image-placeholder {
     width: 100%;
     height: 150px;
-    background-color: #333;
-    border-radius: 5px;
+    background-color: #ccc;
+    border-radius: 8px;
     margin-bottom: 10px;
     background-size: cover;
     background-position: center;
@@ -438,21 +373,18 @@ span {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    background-color: rgba(0, 240, 255, 0.2);
-    color: #00f0ff;
-    border: 1px solid #00f0ff;
+    width: 35px;
+    height: 35px;
+    background-color: #1a1dd1;
+    color: white;
+    border: none;
     border-radius: 50%;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    transition: background 0.3s;
+    font-size: 18px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 .nav-button:hover {
-    background-color: rgba(0, 240, 255, 0.6);
+    background-color: #000fa0;
 }
 
 .prev {
@@ -465,13 +397,13 @@ span {
 
 /* Certificate Cards */
 .certificate-card {
-    background-color: #1e1e1e;
-    border: 2px solid #00f0ff;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
     border-radius: 10px;
     padding: 15px;
     text-align: center;
     width: 250px;
-    box-shadow: 0 0 10px #00f0ff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
     margin: 10px;
     display: inline-block;
     vertical-align: top;
@@ -479,7 +411,7 @@ span {
 }
 
 .certificate-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .certificate-card img {
@@ -491,15 +423,13 @@ span {
 
 /* Footer */
 footer {
-    background-color: #0a0a0a;
-    color: #00f0ff;
+    background-color: #1a1dd1;
+    color: white;
     padding: 20px;
     text-align: center;
-    font-size: 0.9rem;
-    border-top: 2px solid #00f0ff;
+    margin-top: 90px;
 }
-
-        
+      
     </style>
 </head>
 
