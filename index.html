@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Oswald:wght@200..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
-    <style>
+<!--     <style>
         /* Add your CSS here (You can paste your existing CSS directly) */
         /* Keeping your original CSS styles unchanged. Only structure cleaned. */
 
@@ -283,6 +283,491 @@
 }
 
 
+    </style> -->
+
+    <style>
+        /* Base styles */
+* {
+    font-family: "Quicksand", sans-serif;
+    box-sizing: border-box;
+}
+
+/* Header styles */
+.header {
+    background-color: rgb(26, 29, 209);
+    height: 150px;
+    width: 100%;
+    border-bottom: 5px solid rgb(46, 2, 116);
+    position: relative;
+}
+
+.myself {
+    font-size: 38px;
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    color: white;
+}
+
+nav {
+    position: absolute;
+    right: 10px;
+    top: 70px;
+}
+
+a {
+    margin-right: 40px;
+    text-decoration: none;
+    color: white;
+}
+
+/* Main content styles */
+span {
+    color: black;
+    font-size: 50px;
+}
+
+.mid_1 {
+    margin-top: 50px;
+    height: 400px;
+    width: auto;
+    position: relative;
+}
+
+/* Diamond shapes */
+.diamond {
+    height: 200px;
+    width: 200px;
+    border-radius: 30px;
+    background-color: rgb(26, 29, 209);
+    transform: rotate(45deg);
+    box-shadow: -5px -5px 10px white;
+    position: absolute;
+}
+
+.diamond:first-child {
+    z-index: 4;
+    top: 290px;
+    left: 300px;
+}
+
+.diamond:nth-child(2) {
+    z-index: 3;
+    background-color: #b1b1b1;
+    left: 170px;
+}
+
+.diamond:nth-child(3) {
+    z-index: 1;
+    top: -300px;
+    left: 220px;
+}
+
+.sad {
+    height: 350px;
+    position: relative;
+    top: -580px;
+    left: 310px;
+    z-index: 2;
+    filter: brightness(1.7);
+    max-width: 100%;
+}
+
+.picklet {
+    position: absolute;
+    left: -80px;
+}
+
+.transformer {
+    position: absolute;
+    width: 800px;
+    left: 500px;
+    bottom: 180px;
+    overflow: hidden;
+}
+
+.constant {
+    display: inline;
+    position: relative;
+    bottom: 13px;
+}
+
+.constant_1 {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    color: rgb(26, 29, 209);
+}
+
+/* Projects section */
+.projects-section {
+    padding: 20px;
+    position: relative;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.projects-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 10px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.projects-container::-webkit-scrollbar {
+    display: none;
+}
+
+.project {
+    flex: 0 0 auto;
+    width: 250px;
+    background-color: lightgray;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    scroll-snap-align: start;
+}
+
+.project .image-placeholder {
+    width: 100%;
+    height: 150px;
+    background-color: gray;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Navigation buttons */
+.nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: background 0.3s;
+}
+
+.nav-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+/* Certificate cards */
+.certificate-card {
+    background: radial-gradient(
+        circle at center,
+        rgb(26, 29, 209) 0%,
+        rgb(40, 50, 160) 35%,
+        rgb(20, 24, 100) 70%,
+        rgb(10, 12, 40) 100%
+    );
+    border: 1px solid #254e5c;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    width: 250px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    margin: 10px;
+    display: inline-block;
+    vertical-align: top;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    color: #fff;
+}
+
+.certificate-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px #254e5c;
+}
+
+.certificate-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+
+/* ===== RESPONSIVE STYLES ===== */
+
+/* Tablets and smaller desktops */
+@media (max-width: 1024px) {
+    .transformer {
+        width: 600px;
+        left: 300px;
+    }
+    
+    .diamond {
+        height: 150px;
+        width: 150px;
+    }
+    
+    .diamond:first-child {
+        left: 200px;
+    }
+    
+    .diamond:nth-child(2) {
+        left: 100px;
+    }
+    
+    .diamond:nth-child(3) {
+        left: 150px;
+    }
+    
+    .sad {
+        left: 210px;
+        height: 300px;
+    }
+    
+    .certificate-card {
+        width: 220px;
+        margin: 8px;
+    }
+    
+    .project {
+        width: 220px;
+    }
+}
+
+/* Mobile landscape and small tablets */
+@media (max-width: 768px) {
+    .header {
+        height: 120px;
+    }
+    
+    .myself {
+        font-size: 28px;
+        left: 20px;
+        top: 15px;
+    }
+    
+    nav {
+        right: 20px;
+        top: 50px;
+    }
+    
+    a {
+        margin-right: 20px;
+        font-size: 14px;
+    }
+    
+    span {
+        font-size: 35px;
+    }
+    
+    .mid_1 {
+        height: 300px;
+        margin-top: 30px;
+    }
+    
+    .transformer {
+        width: 400px;
+        left: 150px;
+        bottom: 120px;
+    }
+    
+    .diamond {
+        height: 100px;
+        width: 100px;
+    }
+    
+    .diamond:first-child {
+        left: 150px;
+        top: 200px;
+    }
+    
+    .diamond:nth-child(2) {
+        left: 80px;
+        top: 50px;
+    }
+    
+    .diamond:nth-child(3) {
+        left: 120px;
+        top: -150px;
+    }
+    
+    .sad {
+        left: 160px;
+        height: 250px;
+        top: -420px;
+    }
+    
+    .picklet {
+        left: -40px;
+    }
+    
+    .projects-section {
+        padding: 15px;
+    }
+    
+    .certificate-card {
+        width: 200px;
+        margin: 5px;
+        padding: 12px;
+    }
+    
+    .project {
+        width: 200px;
+    }
+    
+    .project .image-placeholder {
+        height: 120px;
+    }
+}
+
+/* Mobile portrait */
+@media (max-width: 480px) {
+    .header {
+        height: 100px;
+    }
+    
+    .myself {
+        font-size: 22px;
+        left: 15px;
+        top: 10px;
+    }
+    
+    nav {
+        right: 15px;
+        top: 40px;
+    }
+    
+    a {
+        margin-right: 15px;
+        font-size: 12px;
+    }
+    
+    span {
+        font-size: 28px;
+    }
+    
+    .mid_1 {
+        height: 250px;
+        margin-top: 20px;
+    }
+    
+    .transformer {
+        width: 300px;
+        left: 50px;
+        bottom: 100px;
+    }
+    
+    .diamond {
+        height: 80px;
+        width: 80px;
+    }
+    
+    .diamond:first-child {
+        left: 100px;
+        top: 150px;
+    }
+    
+    .diamond:nth-child(2) {
+        left: 50px;
+        top: 30px;
+    }
+    
+    .diamond:nth-child(3) {
+        left: 80px;
+        top: -120px;
+    }
+    
+    .sad {
+        left: 110px;
+        height: 200px;
+        top: -320px;
+    }
+    
+    .picklet {
+        left: -20px;
+    }
+    
+    .projects-section {
+        padding: 10px;
+    }
+    
+    .certificate-card {
+        width: 180px;
+        margin: 5px;
+        padding: 10px;
+    }
+    
+    .project {
+        width: 180px;
+        padding: 12px;
+    }
+    
+    .project .image-placeholder {
+        height: 100px;
+    }
+    
+    .nav-button {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 360px) {
+    .myself {
+        font-size: 18px;
+    }
+    
+    nav {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    a {
+        margin-right: 0;
+        font-size: 11px;
+    }
+    
+    .certificate-card {
+        width: 160px;
+    }
+    
+    .project {
+        width: 160px;
+    }
+    
+    .transformer {
+        width: 250px;
+        left: 30px;
+    }
+    
+    .diamond {
+        height: 60px;
+        width: 60px;
+    }
+    
+    .sad {
+        height: 150px;
+        left: 80px;
+    }
+}
     </style>
 
 <!--     <style>* {
