@@ -191,6 +191,27 @@
         .next {
             right: 10px;
         }
+
+        .certificate-card {
+  background-color: #1e1e1e;
+  border: 2px solid #00f0ff;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  width: 250px;
+  box-shadow: 0 0 10px #00f0ff;
+  margin: 10px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.certificate-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
     </style>
 </head>
 
@@ -304,7 +325,9 @@
         <div class="projects-section">
             <h2>Projects</h2>
             <button class="nav-button prev" onclick="scrollProjects('projectsContainer', -1)">&#9664;</button>
-            <div class="projects-container" id="projectsContainer"></div>
+            <div class="projects-container" id="projectsContainer">
+                
+            </div>
             <button class="nav-button next" onclick="scrollProjects('projectsContainer', 1)">&#9654;</button>
         </div>
 
@@ -319,14 +342,39 @@
         <div class="projects-section">
             <h2>Certificates</h2>
             <button class="nav-button prev" onclick="scrollProjects('projectsContainer2', -1)">&#9664;</button>
-            <div class="projects-container" id="projectsContainer2"></div>
+            <div class="projects-container" id="projectsContainer2">
+                <div class="certificate-card">
+  <img src="certificates/ui_cert.png" alt="UI/UX Certificate">
+  <h3>UI/UX Design</h3>
+  <p>By: Coursera</p>
+  <p>Date: 2024-05-10</p>
+  <p>Mohammed Sadiq</p>
+</div>
+
+<div class="certificate-card">
+  <img src="certificates/python_cert.jpg" alt="Python Certificate">
+  <h3>Python for Beginners</h3>
+  <p>By: Udemy</p>
+  <p>Date: 2024-04-15</p>
+  <p>Mohammed Sadiq</p>
+</div>
+
+<div class="certificate-card">
+  <img src="certificates/js_cert.png" alt="JavaScript Certificate">
+  <h3>JavaScript Mastery</h3>
+  <p>By: freeCodeCamp</p>
+  <p>Date: 2023-12-01</p>
+  <p>Mohammed Sadiq</p>
+</div>
+
+            </div>
             <button class="nav-button next" onclick="scrollProjects('projectsContainer2', 1)">&#9654;</button>
         </div>
     </div>
 
     <footer style="background-color: rgb(26, 29, 209); color: white; padding: 20px; text-align: center; margin-top: 90px;">
         <p>Contact me at: sadiq.mohammed.dev@gmail.com</p>
-        <p>Contact me at: 9789935475</p>
+        <p>9789935475</p>
 <!--         <div>
             <label for="secretKey">Enter Secret Key:</label>
             <input type="password" id="secretKey" placeholder="Secret Key">
